@@ -1,4 +1,8 @@
 package com.LeetCode.code.q1.TwoSum;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @QuestionId	:	1
  * @difficulty	:	Easy
@@ -20,6 +24,41 @@ package com.LeetCode.code.q1.TwoSum;
  */
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        
+    	Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+    	for (int i = 0; i < nums.length; i++) {
+			if (map.containsKey(target-nums[i])) {
+				return new int[] {map.get(target-nums[i]),i};
+			}else {
+				map.put(nums[i], i);
+			}
+		}
+        return nums;
     }
+    
+    public int[] twoSum2(int[] nums, int target) {
+        int[] in=null;
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = i+1; j < nums.length; j++) {
+				if(target-nums[j]-nums[i]==0) {
+					in=new int[] {i,j};
+				}
+			}
+		}
+        return in;
+    }
+    
+    /**
+     * 暴力解法两个for循环 但是复杂度太高 O(n)
+     * 把第二次循环转成字典方式 哈希查找的时间复杂度为 O(1)
+     * (2,0) (7,1) (11,2) (15,3)
+     * 返回 target - key + key 两个value
+     */
+    public static void main(String[] args) {
+    	int[] nums = new int[] {2, 7, 11, 15};
+    	int target = 18;
+    	int[] res = new Solution().twoSum(nums, target);
+    	for (int i = 0; i < res.length; i++) {
+    		System.out.println(res[i]);
+		}
+	}
 }

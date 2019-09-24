@@ -1,4 +1,8 @@
 package com.LeetCode.code.q2.AddTwoNumbers;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @QuestionId	:	2
  * @difficulty	:	Medium
@@ -28,7 +32,57 @@ package com.LeetCode.code.q2.AddTwoNumbers;
  * }
  */
 class Solution {
+
+	public class ListNode {
+	   int val;
+	   ListNode next;
+	   ListNode(int x) { val = x; }
+	}
+	 
+	/**
+	 * 逻辑：
+	 * 1 : l → result , result.next = new ListNode(sum%10) , l → l.next = result.next
+	 * 2 : l → result.next , result.next.next = new ListNode(sum%10) , l → l.next = result.next.next
+	 * @param l1
+	 * @param l2
+	 * @return
+	 */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        
+    	ListNode result = new ListNode(0);
+    	ListNode l = result,p = l1,q = l2;
+    	int count = 0;
+    	while (p!=null && q!=null) {
+			int x = (p==null)? 0:p.val;
+			int y = (q==null)? 0:q.val;
+			int sum = x + y + count;
+			l.next = new ListNode(sum%10);
+			count = sum/10;
+			p = (p==null)? p:p.next;
+			q = (p==null)? q:q.next;
+			l = l.next;
+		}
+    	return result.next;
     }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+    	ListNode l1 = s.new ListNode(2);
+    	l1.next = s.new ListNode(4);
+    	l1.next.next = s.new ListNode(3); 
+    	ListNode l2 = s.new ListNode(5);
+    	l2.next = s.new ListNode(6);
+    	l2.next.next = s.new ListNode(4); 
+    	ListNode l = s.addTwoNumbers(l1, l2);
+    	while(l!=null) {
+    		System.out.println(l.val);
+    		l = l.next; 
+    	}
+    	ListNode l3 = l1;
+    	l3.next = s.new ListNode(0);
+    	ListNode l4 = l1;
+    	while(l4!=null) {
+    		System.out.println(l4.val);
+    		l4 = l4.next; 
+    	}
+	}
 }
