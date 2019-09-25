@@ -40,7 +40,26 @@ package com.LeetCode.code.q1002.MaximumWidthRamp;
 	
  */
 class Solution {
+	/**
+	 * 暴力法
+	 * @param A
+	 * @return
+	 */
     public int maxWidthRamp(int[] A) {
-        
+        int count = 0;
+        for (int i = 0; i < A.length; i++) {
+			for (int j = A.length-1; j >= 0; j--) {
+				if(A[i]<=A[j]) {
+					count = count >(j-i) ? count : (j-i);
+					break;
+				}
+			}
+		}
+        return count;
     }
+    
+    public static void main(String[] args) {
+    	int[] A = new int[] {6,0,8,2,1,5};
+		System.out.println(new Solution().maxWidthRamp(A));
+	}
 }

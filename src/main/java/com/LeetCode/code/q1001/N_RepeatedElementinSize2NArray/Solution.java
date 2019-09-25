@@ -1,4 +1,10 @@
-package com.LeetCode.code.q1001.N-RepeatedElementinSize2NArray;
+package com.LeetCode.code.q1001.N_RepeatedElementinSize2NArray;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @QuestionId	:	1001
  * @difficulty	:	Easy
@@ -45,6 +51,19 @@ package com.LeetCode.code.q1001.N-RepeatedElementinSize2NArray;
  */
 class Solution {
     public int repeatedNTimes(int[] A) {
-        
+       int len = A.length;
+       Map<Integer,Integer> map = new HashMap<>();
+       for (int i = 0; i < len; i++) {
+    	   if(map.containsKey(A[i])) {
+    		   return A[i];
+    	   }
+    	   map.put(A[i], A[i]);
+       }
+       return 0;
     }
+    
+    public static void main(String[] args) {
+    	int[] A = new int[] {8,3,2,3};
+    	System.out.println(new Solution().repeatedNTimes(A));
+	}
 }

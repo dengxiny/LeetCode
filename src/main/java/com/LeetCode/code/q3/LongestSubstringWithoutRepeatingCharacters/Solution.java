@@ -1,4 +1,10 @@
 package com.LeetCode.code.q3.LongestSubstringWithoutRepeatingCharacters;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @QuestionId	:	3
  * @difficulty	:	Medium
@@ -31,7 +37,50 @@ package com.LeetCode.code.q3.LongestSubstringWithoutRepeatingCharacters;
 	
  */
 class Solution {
+	
+	/**
+	 * list方案 但是不满意
+	 * @param s
+	 * @return
+	 */
     public int lengthOfLongestSubstring(String s) {
-        
+    	int count = 0;
+    	List<Character> list = new ArrayList<Character>();
+        for (int i = 0; i < s.length(); i++) {
+        	char c1 = s.charAt(i);
+			if(list.contains(c1)) {
+				int len = list.indexOf(c1);
+				for (int j = 0; j <=len ; j++) {
+					list.remove(0);
+				}
+			}
+			list.add(c1);
+			count = list.size()>count?list.size():count;
+		}
+        return count;
     }
+    
+    /**
+     * 官方给的
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring2(String s) {
+        int n = s.length(), ans = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int end = 0, start = 0; end < n; end++) {
+            char alpha = s.charAt(end);
+            if (map.containsKey(alpha)) {
+                start = Math.max(map.get(alpha), start);
+            }
+            ans = Math.max(ans, end - start + 1);
+            map.put(s.charAt(end), end + 1);
+        }
+        return ans;
+    }
+
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().lengthOfLongestSubstring("ckilbkd"));
+	}
 }
