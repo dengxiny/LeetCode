@@ -61,7 +61,7 @@ public class DetailTest {
 		if(null == TranslatedContent) {
 			
 		}else{
-		TranslatedContent = question.getTranslatedContent().replace("&quot;", "\"").replace("&nbsp;", " ").replace("&lt;", "<").replace("&gt;", ">")
+		TranslatedContent = question.getTranslatedContent().replace("&quot;", "\"").replace("&nbsp;", " ").replace("&lt;", "<").replace("&gt;", ">").replace("&ldquo;","“").replace("&rdquo;", "”")
 				.replaceAll("<\\w+>", "").replaceAll("</\\w+>", "").replaceAll("\\n", "\n\t").replace("&#39;", ".");
 		}
 		String difficulty = question.getDifficulty();

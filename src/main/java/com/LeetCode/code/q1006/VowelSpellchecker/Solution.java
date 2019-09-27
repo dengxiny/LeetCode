@@ -18,7 +18,7 @@ package com.LeetCode.code.q1006.VowelSpellchecker;
 			例如：wordlist = ["yellow"], query = "yellow": correct = "yellow"
 		
 		
-		元音错误：如果在将查询单词中的元音（&lsquo;a&rsquo;、&lsquo;e&rsquo;、&lsquo;i&rsquo;、&lsquo;o&rsquo;、&lsquo;u&rsquo;）分别替换为任何元音后，能与单词列表中的单词匹配（不区分大小写），则返回的正确单词与单词列表中的匹配项大小写相同。
+		元音错误：如果在将查询单词中的元音（“a”、“e”、“i”、“o”、“u”）分别替换为任何元音后，能与单词列表中的单词匹配（不区分大小写），则返回的正确单词与单词列表中的匹配项大小写相同。
 		
 			例如：wordlist = ["YellOw"], query = "yollow": correct = "YellOw"
 			例如：wordlist = ["YellOw"], query = "yeellow": correct = "" （无匹配项）

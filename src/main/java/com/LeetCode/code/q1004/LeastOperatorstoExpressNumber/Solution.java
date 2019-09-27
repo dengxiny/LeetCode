@@ -13,7 +13,7 @@ package com.LeetCode.code.q1004.LeastOperatorstoExpressNumber;
 		除运算符（/）返回有理数。
 		任何地方都没有括号。
 		我们使用通常的操作顺序：乘法和除法发生在加法和减法之前。
-		不允许使用一元否定运算符（-）。例如，&ldquo;x - x&rdquo; 是一个有效的表达式，因为它只使用减法，但是 &ldquo;-x + x&rdquo; 不是，因为它使用了否定运算符。 
+		不允许使用一元否定运算符（-）。例如，“x - x” 是一个有效的表达式，因为它只使用减法，但是 “-x + x” 不是，因为它使用了否定运算符。 
 	
 	
 	我们希望编写一个能使表达式等于给定的目标值 target 且运算符最少的表达式。返回所用运算符的最少数量。
@@ -53,7 +53,20 @@ package com.LeetCode.code.q1004.LeastOperatorstoExpressNumber;
 	
  */
 class Solution {
+	/**
+	 * 拆成多项式target = a0 * x^0 + a1 * x^1 + a2 * x^2 + a3 * x^3 .....
+	 * count =  a0 * 2 + a1 *1 + a2*2 ...
+	 * @param x
+	 * @param target
+	 * @return
+	 */
     public int leastOpsExpressTarget(int x, int target) {
-        
+    	int lowCount = 0;
+    	System.out.println(target>>1);
+        return lowCount;
     }
+    
+    public static void main(String[] args) {
+    	System.out.println(new Solution().leastOpsExpressTarget(5, 626));
+	}
 }
