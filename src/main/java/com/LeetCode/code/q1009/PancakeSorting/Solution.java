@@ -1,4 +1,10 @@
 package com.LeetCode.code.q1009.PancakeSorting;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @QuestionId	:	1009
  * @difficulty	:	Medium
@@ -44,7 +50,124 @@ package com.LeetCode.code.q1009.PancakeSorting;
 	
  */
 class Solution {
+/*	public List<Integer> pancakeSort(int[] A) {
+        List<Integer> ans = new ArrayList();
+        int N = A.length;
+
+        Integer[] B = new Integer[N];
+        for (int i = 0; i < N; ++i)
+            B[i] = i+1;
+        Arrays.sort(B, (i, j) -> A[j-1] - A[i-1]);
+
+        for (int i: B) {
+            for (int f: ans)
+                if (i <= f)
+                    i = f+1 - i;
+            ans.add(i);
+            ans.add(N--);
+        }
+
+        return ans;
+    }*/
+	
+/*    public List<Integer> pancakeSort(int[] a) {
+        int len = a.length;
+        if (len <= 1) {
+            return Collections.emptyList();
+        }
+        List<Integer> list = new ArrayList<>();
+        for (int i = len; i >= 1; i--) {
+
+            int pos = findMaxPosition(i, a);
+            if (pos == i) {
+                continue;
+            }
+
+            list.add(pos);
+            reverse(a, pos);
+            list.add(i);
+            reverse(a, i);
+        }
+        return list;
+    }
+
+    private void reverse(int[] a, int num) {
+        int i = 0, j = num - 1;
+        int temp;
+        while (i < j) {
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    private int findMaxPosition(int max, int[] a) {
+        int len = a.length;
+        for (int i = 0; i < len; i++) {
+            if (a[i] == max) {
+                return i + 1;
+            }
+        }
+        return -1;
+    }*/
+    
     public List<Integer> pancakeSort(int[] A) {
+        int times=0;
+        List<Integer>list=new ArrayList<>();
+        int[]B=Arrays.copyOf(A,A.length);
+        Arrays.sort(B);
+        for(int i=0;i<A.length;i++)
+        {
+            times = findMax(A,B,i);
+            if(times!=-1){
+                if(times!=0){
+                 reverse(A,times);
+             list.add(times+1);
+                }
+                //如果当前最大值位置等于0，就可以直接全部翻转
+                
+                reverse(A,A.length-i-1);
+                list.add(A.length-i);
+                
+        }
+        }
+        return list;
         
     }
+    public int findMax(int[]A,int[]B,int curr)
+    {
+        int num=B[B.length-curr-1];
+        int index=0;
+        for(int i=0;i<A.length;i++)
+        {
+            if(A[i]==num)
+            {  
+            index=i;
+             break;
+            }
+            
+        }
+        if(B.length-curr-1==index)
+            return -1;
+ 
+        return index;
+    }
+    public int[] reverse(int[]A,int times)
+    {
+        for(int i=0;i<(times+1)/2;i++)
+        {
+            int temp=A[i];
+            A[i]=A[times-i];
+            A[times-i]=temp;
+        }
+        return A;
+    }
+
+
+	
+	public static void main(String[] args) {
+		System.out.println(new Solution().pancakeSort(new int[] {3,2,4,1,5}));
+	}
 }

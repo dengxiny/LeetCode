@@ -1,4 +1,7 @@
 package com.LeetCode.code.q1019.SquaresofaSortedArray;
+
+import java.util.Arrays;
+
 /**
  * @QuestionId	:	1019
  * @difficulty	:	Easy
@@ -34,6 +37,40 @@ package com.LeetCode.code.q1019.SquaresofaSortedArray;
  */
 class Solution {
     public int[] sortedSquares(int[] A) {
-        
+    	int [] arr = new int[A.length];
+        for (int i = 0; i < arr.length; i++) {
+			arr[i]=A[i]*A[i];
+		}
+        Arrays.sort(arr);
+        return arr;
     }
+    
+    public int[] sortedSquares2(int[] A) {
+    	int len = A.length;
+    	int i = 0;
+    	while(i<len&&A[i]<0) {
+    		i++;
+    	}
+    	int size = i-1;
+    	int [] arr = new int[A.length];
+    	int count = 0;
+    	while(size>0&&i<len) {
+    		if(A[size]*A[size]>A[i]*A[i]) {
+    			arr[count++] =A[i]*A[i];
+    			size--;
+    		}else {
+    			arr[count++]=A[size]*A[size];
+    			i++;
+    		}
+    	}
+        return arr;
+    }
+    
+    
+    public static void main(String[] args) {
+    	int[] arr = new Solution().sortedSquares(new int[] {-4,-1,0,3,10});
+		for (int i : arr) {
+			System.out.print(i+",");
+		}
+	}
 }

@@ -1,4 +1,8 @@
 package com.LeetCode.code.q1018.LargestPerimeterTriangle;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * @QuestionId	:	1018
  * @difficulty	:	Easy
@@ -49,7 +53,30 @@ package com.LeetCode.code.q1018.LargestPerimeterTriangle;
 	
  */
 class Solution {
+    
+    
     public int largestPerimeter(int[] A) {
-        
+    	Arrays.sort(A);
+    	int count = 0;
+    	for (int i = 0; i < A.length-2; i++) {
+			if(A[i]+A[i+1]>A[i+2]) {
+				count = count > A[i]+A[i+1]+A[i+2]?count:A[i]+A[i+1]+A[i+2];
+			}
+		}
+    	return count;
     }
+    
+    public int largestPerimeter2(int[] A) {
+        Arrays.sort(A);
+    	for (int i = A.length-1; i > 1; i--) {
+			if(A[i-2]+A[i-1]>A[i]) {
+				return A[i-2]+A[i-1]+A[i];
+			}
+		}
+    	return 0;
+    }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().largestPerimeter(new int[] {2,1,2}));
+	}
 }

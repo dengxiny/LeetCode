@@ -40,7 +40,34 @@ package com.LeetCode.code.q101.SymmetricTree;
  * }
  */
 class Solution {
+	public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	}
     public boolean isSymmetric(TreeNode root) {
-        
+    	return isMirror(root,root);
     }
+    
+    public boolean isMirror(TreeNode p, TreeNode q) {
+		if(p==null&&q==null) {
+			return true;
+		}
+		if(p==null||q==null) {
+			return false;
+		}
+		return p.val==q.val&&isMirror(p.left,q.right)&&isMirror(p.right,q.left);
+	}
+
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		//[1,2,2,null,3,null,3]
+		TreeNode t = s.new TreeNode(1);
+		t.left = s.new TreeNode(2);
+		t.right = s.new TreeNode(2);
+		t.left.right = s.new TreeNode(3);
+		t.right.right = s.new TreeNode(3);
+		System.out.println(s.isSymmetric(t));
+	}
 }

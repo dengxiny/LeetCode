@@ -41,12 +41,43 @@ package com.LeetCode.code.q1013.FibonacciNumber;
 	提示：
 	
 	
-		0 &le; N &le; 30
+		0 ≤ N ≤ 30
 	
 	
  */
 class Solution {
+	/**
+	 * 递归
+	 * @param N
+	 * @return
+	 */
     public int fib(int N) {
-        
+        if(N==0) {
+        	return 0;
+        }else if(N==1) {
+        	return 1;
+        }else {
+        	return fib(N-2)+fib(N-1);
+        }
     }
+    
+    /**
+	 * 
+	 * @param N
+	 * @return
+	 */
+    public int fib2(int N) {
+    	int temp=0 ;
+    	int count=1;
+        while(N--> 0) {
+        	temp = temp +count;
+        	count = temp -count;
+        }
+        return temp;
+    }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().fib(10));
+		System.out.println(new Solution().fib2(10));
+	}
 }

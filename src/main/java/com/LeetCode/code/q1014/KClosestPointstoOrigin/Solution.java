@@ -44,6 +44,10 @@ package com.LeetCode.code.q1014.KClosestPointstoOrigin;
  */
 class Solution {
     public int[][] kClosest(int[][] points, int K) {
-        
+    	int[][] r = new int[0][2];
+        for (int[] is : points) {
+			
+		}
+        return r;
     }
 }

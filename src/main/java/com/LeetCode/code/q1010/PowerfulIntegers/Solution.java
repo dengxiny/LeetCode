@@ -1,4 +1,8 @@
 package com.LeetCode.code.q1010.PowerfulIntegers;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @QuestionId	:	1010
  * @difficulty	:	Easy
@@ -46,6 +50,36 @@ package com.LeetCode.code.q1010.PowerfulIntegers;
  */
 class Solution {
     public List<Integer> powerfulIntegers(int x, int y, int bound) {
-        
+    	List<Integer> list = new ArrayList<Integer>();
+    	int countX = 1; 
+    	int countY = 1; 
+        for (int i = 0; i < 101; i++) {
+        	if(i>0){
+        		countX = countX * x;
+        	}
+        	if(countX>1000000) {
+        		break;
+        	}
+			for (int j = 0; j < 101; j++) {
+				if(countY>1000000) {
+					countY=1;
+					break ;
+				}else {
+					if(j>0) {
+						countY = countY * y;
+					}
+					int sum = countX +countY;
+					//System.out.println(i+" "+countX+" "+j+" "+countY+" "+sum);
+					if(sum<=bound&&!list.contains(sum)) {
+						list.add(sum);
+					}
+				}
+			}
+		}
+        return list;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().powerfulIntegers(2, 3, 10));
+	}
 }
