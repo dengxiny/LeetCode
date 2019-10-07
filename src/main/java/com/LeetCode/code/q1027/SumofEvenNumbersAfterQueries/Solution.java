@@ -41,7 +41,80 @@ package com.LeetCode.code.q1027.SumofEvenNumbersAfterQueries;
 	
  */
 class Solution {
-    public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
-        
-    }
+	/**
+	 * 超出时间限制
+	 * 
+	 * @param A
+	 * @param queries
+	 * @return
+	 */
+//	  public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+//		  int[] ans = new int[A.length];
+//		  int j = 0;
+//		  for (int[] i : queries) {
+//			  System.out.println(Arrays.toString(i));
+//			  A[i[1]]=A[i[1]]+i[0];
+//			  for (int a : A) {
+//				if(a%2==0) {
+//					ans[j]=ans[j]+a;
+//				}
+//			}
+//			j++; 
+//		  }
+//		  return ans;
+//	  }
+
+	public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+		int sum = 0;
+		for (int is : A) {
+			if(is%2==0) {
+				sum=sum+is;
+			}
+		}
+		System.out.println(sum);
+		int[] ans = new int[A.length];
+		int j = 0;
+		for (int[] i : queries) {
+			int oldS = A[i[1]];
+			A[i[1]]=oldS+i[0];
+			int newS = A[i[1]];
+			if(oldS%2==0&&newS%2!=0) {
+				sum=sum-oldS;
+			}else if(oldS%2==0&&newS%2==0) {
+				sum=sum-oldS+newS;
+			}else if(oldS%2!=0&&newS%2==0) {
+				sum=sum+newS;
+			}
+			ans[j]=sum;
+			j++;		
+		}
+		return ans;
+//		int S = 0;
+//		for (int x : A)
+//			if (x % 2 == 0)
+//				S += x;
+//
+//		int[] ans = new int[queries.length];
+//
+//		for (int i = 0; i < queries.length; ++i) {
+//			int val = queries[i][0], index = queries[i][1];
+//			if (A[index] % 2 == 0)
+//				S -= A[index];
+//			A[index] += val;
+//			if (A[index] % 2 == 0)
+//				S += A[index];
+//			ans[i] = S;
+//		}
+//
+//		return ans;
+	}
+
+	public static void main(String[] args) {
+		int[] arr = new Solution().sumEvenAfterQueries(new int[] { 1, 2, 3, 4 },
+				new int[][] { { 1, 0 }, { -3, 1 }, { -4, 0 }, { 2, 3 } });
+		for (int i : arr) {
+			System.out.println(i);
+		}
+	}
+
 }

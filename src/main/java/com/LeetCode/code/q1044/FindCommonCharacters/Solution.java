@@ -1,4 +1,7 @@
 package com.LeetCode.code.q1044.FindCommonCharacters;
+
+import java.util.List;
+
 /**
  * @QuestionId	:	1044
  * @difficulty	:	Easy
@@ -36,6 +39,10 @@ package com.LeetCode.code.q1044.FindCommonCharacters;
  */
 class Solution {
     public List<String> commonChars(String[] A) {
-        
+    	char[] s = A[0].toCharArray();
+    	for (int i = 1; i < A.length; i++) {
+			String string = A[i];
+			
+		}
     }
 }

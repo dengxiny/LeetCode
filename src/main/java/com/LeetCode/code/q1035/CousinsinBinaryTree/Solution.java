@@ -1,4 +1,10 @@
 package com.LeetCode.code.q1035.CousinsinBinaryTree;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @QuestionId	:	1035
  * @difficulty	:	Easy
@@ -58,7 +64,49 @@ package com.LeetCode.code.q1035.CousinsinBinaryTree;
  * }
  */
 class Solution {
+	   public class TreeNode {
+	       int val;
+	       TreeNode left;
+	       TreeNode right;
+	       TreeNode(int x) { val = x; }
+	   }
+ 
+	   
     public boolean isCousins(TreeNode root, int x, int y) {
-        
+    	Map<String,Integer> map = new HashMap();
+    	put(root, map, x, y,0);
+    	System.out.println(map.toString());
+    	if(map.get(String.valueOf(x))==map.get(String.valueOf(y))&&map.get("p1")!=map.get("p2")) {
+    		return true;
+    	}
+    	return false;
     }
+    
+    public void put(TreeNode root,Map<String,Integer> map, int x, int y,int size) {
+    	if(root==null) {
+    		return;
+    	}
+    	if((root.left!=null&&root.left.val==x)||(root.right!=null&&root.right.val==x)) {
+    		System.out.println(String.valueOf(x));
+    		map.put(String.valueOf(x), size+1);
+    		map.put("p1", root.val);
+    	}
+    	if((root.left!=null&&root.left.val==y)||(root.right!=null&&root.right.val==y)) {
+    		map.put(String.valueOf(y), size+1);
+    		map.put("p2", root.val);
+    	}
+    	put(root.left, map, x, y,size+1);
+    	put(root.right, map, x, y,size+1);
+    }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+    	TreeNode root = s.new TreeNode(1);
+    	root.left = s.new TreeNode(2);
+    	root.left.right = s.new TreeNode(4);
+    	root.right = s.new TreeNode(3);
+    	root.right.right = s.new TreeNode(5);
+    	//root.right.right = s.new TreeNode(7);
+		System.out.println(s.isCousins(root,5,4));
+	}
 }

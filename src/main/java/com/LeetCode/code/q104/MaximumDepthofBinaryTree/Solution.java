@@ -33,7 +33,28 @@ package com.LeetCode.code.q104.MaximumDepthofBinaryTree;
  * }
  */
 class Solution {
+	
+	  public class TreeNode {
+		      int val;
+		      TreeNode left;
+		      TreeNode right;
+		      TreeNode(int x) { val = x; }
+		  }
+	
     public int maxDepth(TreeNode root) {
-        
+    	int depth = 0;
+    	depth=depth(root,depth);
+        return depth;
+    }
+    
+    public int depth(TreeNode root,int depth) {
+    	if(root==null) {
+    		return depth;
+    	}
+    	depth++;
+    	int a1 = depth(root.left,depth);
+    	int a2 = depth(root.right,depth);
+    	depth=a1>a2?a1:a2;
+    	return depth;
     }
 }

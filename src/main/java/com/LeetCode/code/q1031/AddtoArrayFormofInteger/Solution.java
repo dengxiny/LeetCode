@@ -1,4 +1,11 @@
-package com.LeetCode.code.q1031.AddtoArray-FormofInteger;
+package com.LeetCode.code.q1031.AddtoArrayFormofInteger;
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @QuestionId	:	1031
  * @difficulty	:	Easy
@@ -56,6 +63,24 @@ package com.LeetCode.code.q1031.AddtoArray-FormofInteger;
  */
 class Solution {
     public List<Integer> addToArrayForm(int[] A, int K) {
-        
+    	int N = A.length;
+    	int cur = K;
+    	List<Integer> list = new ArrayList<Integer>();
+    	while(N>0||cur>0) {
+    		if(N>0) {
+    			N--;
+    			cur+=A[N];
+    			list.add(cur%10);
+    		}else {
+    			list.add(cur%10);
+    		}
+    		cur=cur/10;
+    	}
+    	Collections.reverse(list);
+    	return list;
     }
+    
+    public static void main(String[] args) {
+    	System.out.println(new Solution().addToArrayForm(new int[] {2,1,5}, 806));
+	}
 }
