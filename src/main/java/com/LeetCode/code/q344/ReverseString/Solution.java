@@ -27,6 +27,21 @@ package com.LeetCode.code.q344.ReverseString;
  */
 class Solution {
     public void reverseString(char[] s) {
-        
+    	int i = 0;
+    	int j = s.length-1;
+    	while(i<j) {
+    		char a = s[i];
+    		s[i] = s[j];
+    		s[j] = a;
+    		i++;
+    		j--;
+    	}
+    	System.out.println(String.valueOf(s));
     }
+    
+    public static void main(String[] args) {
+		char[] a1 = new char[] {'H','a','n','n','a','h'};
+		new Solution().reverseString(a1);
+		
+	}
 }

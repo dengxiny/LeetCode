@@ -24,6 +24,24 @@ package com.LeetCode.code.q342.PowerofFour;
  */
 class Solution {
     public boolean isPowerOfFour(int num) {
-        
+    	if (num <= 0||(num & num - 1) != 0)
+			return false;
+        //如果与运算之后是本身则是 4 的幂
+		if ((num & 0x55555555) == num)
+			return true;
+		return false;
     }
+    
+    public boolean isPowerOfFour2(int num) {
+    	while(num!=0&&num%4==0) {
+    		num/=4;
+    	}
+    	return num==1;
+    }
+    
+    public static void main(String[] args) {
+    	System.out.println(new Solution().isPowerOfFour(1));
+    	System.out.println(4*4*4*4*4*4*4*4*4*4*4*4*4*4*4);
+		System.out.println(Integer.MAX_VALUE);
+	}
 }

@@ -1,4 +1,11 @@
 package com.LeetCode.code.q349.IntersectionofTwoArrays;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 /**
  * @QuestionId	:	349
  * @difficulty	:	Easy
@@ -27,7 +34,39 @@ package com.LeetCode.code.q349.IntersectionofTwoArrays;
 	
  */
 class Solution {
+	
+	
+	
+	
     public int[] intersection(int[] nums1, int[] nums2) {
+    	int a = nums1.length,b = nums2.length;
+    	Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    	Map<Integer, Integer> map2 = new HashMap<Integer, Integer>();
+    	if(a>b) {
+    		for (int i : nums1) {
+    			map.put(i, i);
+			}
+    		for (int i : nums2) {
+				if(map.containsKey(i)) {
+					map2.put(i, i);
+				}
+			}
+    	}else {
+    		for (int i : nums2) {
+    			map.put(i, i);
+			}
+    		for (int i : nums1) {
+				if(map.containsKey(i)) {
+					map2.put(i, i);
+				}
+			}
+    	}
+    	int[] re = new int[map2.size()];
+    	int i=0;
+    	for (Integer key : map2.keySet()) {
+    		re[i++]=key;
+        }
+    	return re;
         
     }
 }

@@ -1,4 +1,8 @@
 package com.LeetCode.code.q345.ReverseVowelsofaString;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
 /**
  * @QuestionId	:	345
  * @difficulty	:	Easy
@@ -23,7 +27,27 @@ package com.LeetCode.code.q345.ReverseVowelsofaString;
 	
  */
 class Solution {
+	
+	private final static HashSet<Character> set = new HashSet<>(Arrays.asList('a','o','e','i','u','A','O','E','I','U'));
     public String reverseVowels(String s) {
-        
+    	char[] result = new char[s.toCharArray().length];
+    	int i = 0,j = result.length-1;
+    	while(i<=j) {
+    		char a = s.charAt(i);
+    		char b = s.charAt(j);
+    		if(!set.contains(a)) {
+    			result[i++]=a;
+    		}else if(!set.contains(b)) {
+    			result[j--]=b;
+    		}else {
+    			result[i++]=b;
+    			result[j--]=a;
+    		}
+    	}
+        return new String(result);
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().reverseVowels("leetcode"));
+	}
 }

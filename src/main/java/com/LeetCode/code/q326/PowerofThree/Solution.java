@@ -33,7 +33,14 @@ package com.LeetCode.code.q326.PowerofThree;
 	
  */
 class Solution {
+	/**
+	 * 3^n<2147483647 1162261467是所有3^n的乘积
+	 */
     public boolean isPowerOfThree(int n) {
-        
+		return n>0&&1162261467%3==0;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(Integer.MAX_VALUE);
+	}
 }

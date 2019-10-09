@@ -36,6 +36,15 @@ package com.LeetCode.code.q35.SearchInsertPosition;
  */
 class Solution {
     public int searchInsert(int[] nums, int target) {
-        
+        int i = -1,j=nums.length;
+        while(i++<=j--) {
+        	if(target<=nums[i]) {
+        		return i;
+        	}
+        	if(target>nums[j]) {
+        		return j+1;
+        	}
+        }
+        return 0;
     }
 }
