@@ -29,6 +29,20 @@ package com.LeetCode.code.q389.FindtheDifference;
  */
 class Solution {
     public char findTheDifference(String s, String t) {
-        
+    	int[] r = new int[26];
+    	for (char i : s.toCharArray()) {
+			r[i-'a']=r[i-'a']+1;
+		}
+    	for (char i : t.toCharArray()) {
+    		r[i-'a']=r[i-'a']-1;
+		}
+    	int size = 0;
+    	for (int i : r) {
+    		if(i<0) {
+    			return (char) (size+'a');
+    		}
+    		size++;
+		}
+    	return 'a';
     }
 }

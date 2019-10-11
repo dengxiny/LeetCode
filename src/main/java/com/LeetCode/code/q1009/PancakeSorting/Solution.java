@@ -50,7 +50,7 @@ import java.util.List;
 	
  */
 class Solution {
-/*	public List<Integer> pancakeSort(int[] A) {
+	public List<Integer> pancakeSort2(int[] A) {
         List<Integer> ans = new ArrayList();
         int N = A.length;
 
@@ -68,7 +68,7 @@ class Solution {
         }
 
         return ans;
-    }*/
+    }
 	
 /*    public List<Integer> pancakeSort(int[] a) {
         int len = a.length;
@@ -154,7 +154,48 @@ class Solution {
  
         return index;
     }
-    public int[] reverse(int[]A,int times)
+    
+
+	public List<Integer> pancakeSort3(int[] A) {
+        List<Integer> ans = new ArrayList<Integer>();
+        int[] B = Arrays.copyOf(A,A.length);
+        Arrays.sort(B);
+        for (int i = B.length; i > 1 ; i--) {
+        	int index = max(A,B[i-1])+1;
+        	System.out.println(i+"-"+index);
+			if(i>index) {
+				if(i>2) {
+					ans.add(index);
+					reverse(A,index-1);
+					ans.add(i);
+					reverse(A,i-1);
+				}else {
+					ans.add(2);
+				}
+			}
+			for (int j : A) {
+				System.out.print(j+",");
+			}
+			System.out.println();
+		}
+        return ans;
+    }
+	
+	public int max(int[] A,int max) {
+		int i=0,j=A.length-1;
+		while(i<=j) {
+			if(A[i]==max) {
+				return i;
+			}
+			if(A[j]==max) {
+				return j;
+			}
+			i++;j--;
+		}
+		return 0;
+	}
+	
+	public int[] reverse(int[]A,int times)
     {
         for(int i=0;i<(times+1)/2;i++)
         {
@@ -164,10 +205,8 @@ class Solution {
         }
         return A;
     }
-
-
 	
 	public static void main(String[] args) {
-		System.out.println(new Solution().pancakeSort(new int[] {3,2,4,1,5}));
+		System.out.println(new Solution().pancakeSort3(new int[] {30,20,40,50,10}));
 	}
 }

@@ -32,6 +32,17 @@ package com.LeetCode.code.q392.IsSubsequence;
  */
 class Solution {
     public boolean isSubsequence(String s, String t) {
-        
+    	int index = -1;
+    	for (char i : s.toCharArray()) {
+			index = t.indexOf(i,index+1);
+			if(index==-1) {
+				return false;
+			}
+		}
+    	return true;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().isSubsequence("abcv", "avcbcbbcvv"));
+	}
 }

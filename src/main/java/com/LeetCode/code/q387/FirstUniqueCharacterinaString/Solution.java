@@ -1,4 +1,7 @@
 package com.LeetCode.code.q387.FirstUniqueCharacterinaString;
+
+import java.util.HashMap;
+
 /**
  * @QuestionId	:	387
  * @difficulty	:	Easy
@@ -23,7 +26,51 @@ package com.LeetCode.code.q387.FirstUniqueCharacterinaString;
 	
  */
 class Solution {
+	
+	/**
+	 * 超时 
+	 * 优化完可以过
+	 * @param s
+	 * @return
+	 */
     public int firstUniqChar(String s) {
-        
+    	for (int i = 0; i < s.length(); i++) {
+    		char c = s.charAt(i);
+    		//优化
+    		if('z'-c>26) {
+    			continue;
+    		}
+    		s = s.replaceFirst(String.valueOf(c), String.valueOf(c).toUpperCase());
+			if(!s.contains(String.valueOf(c))) {
+				return i;
+			}else {
+				s=s.replace(String.valueOf(c), String.valueOf(c).toUpperCase());
+			}
+		}
+        return -1;
     }
+    
+    
+    public int firstUniqChar2(String s) {
+        HashMap<Character, Integer> count = new HashMap<Character, Integer>();
+        int n = s.length();
+        // build hash map : character and how often it appears
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            count.put(c, count.getOrDefault(c, 0) + 1);
+        }
+        
+        // find the index
+        for (int i = 0; i < n; i++) {
+            if (count.get(s.charAt(i)) == 1) 
+                return i;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+    	String s = "leetcode"; 
+		System.out.println(new Solution().firstUniqChar(s));
+		//System.out.println(s);
+	}
 }

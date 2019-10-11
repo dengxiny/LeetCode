@@ -1,4 +1,9 @@
 package com.LeetCode.code.q409.LongestPalindrome;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 /**
  * @QuestionId	:	409
  * @difficulty	:	Easy
@@ -28,6 +33,45 @@ package com.LeetCode.code.q409.LongestPalindrome;
  */
 class Solution {
     public int longestPalindrome(String s) {
-        
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        for (char i : s.toCharArray()) {
+			map.put(i, map.get(i)==null?1:map.get(i)+1);
+		}
+        int size=0;
+        boolean flag=false;
+        for (Character entry : map.keySet()) {
+        	Integer value = map.get(entry);
+        	if(value/2>0) {
+        		size=size+value/2*2;
+        	}else {
+        		flag=true;
+        	}
+		}
+        return flag?size+1:size<s.length()?size+1:size;
+    }
+    
+    public int longestPalindrome2(String s) {
+        int[] count = new int[128];
+        for (char c: s.toCharArray())
+            count[c]++;
+
+        int ans = 0;
+        for (int v: count) {
+            ans += v / 2 * 2;
+            if (v % 2 == 1 && ans % 2 == 0)
+                ans++;
+        }
+        return ans;
+    }
+
+
+    
+    public static void main(String[] args) {
+    	System.out.println(1/2);
+		System.out.println(new Solution().longestPalindrome("aA"));
+		System.out.println(new Solution().longestPalindrome("bb"));
+		System.out.println(new Solution().longestPalindrome("ccccddab"));
+		System.out.println(new Solution().longestPalindrome("ccc"));
+		System.out.println(new Solution().longestPalindrome("cccbbb"));
     }
 }

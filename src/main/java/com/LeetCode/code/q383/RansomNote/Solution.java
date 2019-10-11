@@ -1,4 +1,10 @@
 package com.LeetCode.code.q383.RansomNote;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @QuestionId	:	383
  * @difficulty	:	Easy
@@ -22,6 +28,62 @@ package com.LeetCode.code.q383.RansomNote;
  */
 class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
-        
+    	List<Character> list = new ArrayList<Character>();
+    	for (char i :  magazine.toCharArray()) {
+    		list.add(i);
+		}
+        for (char i : ransomNote.toCharArray()) {
+			if(!list.contains(i)) {
+				return false;
+			}else {
+				list.remove(list.indexOf(i));
+			}
+		}
+        return true;
     }
+    
+    public boolean canConstruct2(String ransomNote, String magazine) {
+    	Map<Character, Integer> map = new HashMap<Character, Integer>();
+    	for (char i :  magazine.toCharArray()) {
+    		map.put(i, map.get(i)==null?0:map.get(i)+1);
+		}
+        for (char i : ransomNote.toCharArray()) {
+			if(!map.containsKey(i)) {
+				return false;
+			}else {
+				int size = map.get(i)-1;
+				if(size<-1) {
+					return false;
+				}
+				map.put(i, size);
+			}
+		}
+        return true;
+    }
+    
+    /**
+     * 均含小写默认26个小写 桶排序
+     * abcd
+     * 0000
+     * @param ransomNote
+     * @param magazine
+     * @return
+     */
+    public boolean canConstruct3(String ransomNote, String magazine) {
+	    int[] buckets = new int[26];
+	    for(int i = 0; i < magazine.length(); i++) {
+	        buckets[magazine.charAt(i) - 'a']++;
+	    }
+	    for(int i = 0; i < ransomNote.length(); i++) {
+	        if(--buckets[ransomNote.charAt(i) - 'a'] < 0) {
+	            return false;
+	        }
+	    }
+	    return true;
+    }
+
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().canConstruct3("aa","aab"));
+	}
 }

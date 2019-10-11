@@ -1,4 +1,8 @@
 package com.LeetCode.code.q401.BinaryWatch;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @QuestionId	:	401
  * @difficulty	:	Easy
@@ -34,6 +38,65 @@ package com.LeetCode.code.q401.BinaryWatch;
  */
 class Solution {
     public List<String> readBinaryWatch(int num) {
+    	List<String> list = new ArrayList<String>();
+    	for (int i = 0; i < 12; i++) {
+			String s = String.valueOf(i);
+			for (int j = 0; j < 60; j++) {
+				String s1 = String.format("%02d", j);
+				if(check(i,j,num)) {
+					list.add(s+":"+s1);
+				}
+			}
+		}
+		return list;
         
     }
+    
+    
+    public boolean check(int i,int j ,int num) {
+    	int index = -1;
+    	int count = 0;
+    	String s = Integer.toBinaryString(i);
+    	for (int k = 0; k < s.length(); k++) {
+			index = s.indexOf("1",index+1);
+			if(index==-1) {
+				break;
+			}
+			count++;
+		}
+    	index = -1;
+    	String s1 = Integer.toBinaryString(j);
+    	for (int k = 0; k < s1.length(); k++) {
+			index = s1.indexOf("1",index+1);
+			if(index==-1) {
+				break;
+			}
+			count++;
+		}
+    	if(count==num) {
+    		return true;
+    	}
+    	return false;
+    }
+    
+    /**
+     * 用bigcount 先左移给分让6位 统计1的个数
+     * 01:23
+     * 01:10111 1010111
+     * @param num
+     * @return
+     */
+    public List<String> readBinaryWatch_2(int num) {
+    	List<String> resList = new ArrayList<>();
+    	for (int i = 0; i < 12; ++i)
+    	      for (int j = 0; j < 60; ++j)
+    		if (Integer.bitCount((i << 6) | j) == num)
+    			resList.add(i + ":" + (j > 9 ? "" : "0") + j);
+    	return resList;
+    }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().readBinaryWatch(2));
+		//System.out.println(new Solution().check(7, 0, 2));
+	}
 }

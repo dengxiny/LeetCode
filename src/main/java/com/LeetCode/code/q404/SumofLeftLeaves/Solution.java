@@ -31,7 +31,37 @@ package com.LeetCode.code.q404.SumofLeftLeaves;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
     public int sumOfLeftLeaves(TreeNode root) {
+    	int sum=0;
+    	if(root==null) {
+    		return sum;
+    	}
+    	if(isBoom(root.left)) {
+    		sum+=root.left.val;
+    	}
+    	sum+=sumOfLeftLeaves(root.right);
+    	sum+=sumOfLeftLeaves(root.left);
+		return sum;
         
     }
+    
+    public boolean isBoom(TreeNode root) {
+		return root!=null&&root.left==null&&root.right==null;
+    }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+    	TreeNode t = s.new TreeNode(1);
+    	t.left = s.new TreeNode(2);
+    	t.right = s.new TreeNode(3);
+    	t.left.left = s.new TreeNode(4);
+    	t.left.right = s.new TreeNode(5);
+		System.out.println(s.sumOfLeftLeaves(t));
+	}
 }
