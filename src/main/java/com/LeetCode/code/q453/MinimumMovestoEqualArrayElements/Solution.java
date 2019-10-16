@@ -1,4 +1,7 @@
 package com.LeetCode.code.q453.MinimumMovestoEqualArrayElements;
+
+import java.util.Arrays;
+
 /**
  * @QuestionId	:	453
  * @difficulty	:	Easy
@@ -24,7 +27,26 @@ package com.LeetCode.code.q453.MinimumMovestoEqualArrayElements;
 	
  */
 class Solution {
+	/**
+	 * 反过来看每次最大值-1;
+	 * @param nums
+	 * @return
+	 */
     public int minMoves(int[] nums) {
-        
+    	int sum = 0;
+    	int count = Integer.MAX_VALUE;
+    	for (int i = 0; i < nums.length; i++) {
+			if(nums[i]>count) {
+				sum+=(nums[i]-count);
+			}else {
+				sum+=i*(count-nums[i]);
+				count=nums[i];
+			}
+		}
+        return sum;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().minMoves(new int[] {83,86,77,15,93,35,86,92,49,21}));
+	}
 }

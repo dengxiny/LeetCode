@@ -1,4 +1,8 @@
 package com.LeetCode.code.q412.FizzBuzz;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @QuestionId	:	412
  * @difficulty	:	Easy
@@ -40,6 +44,24 @@ package com.LeetCode.code.q412.FizzBuzz;
  */
 class Solution {
     public List<String> fizzBuzz(int n) {
-        
+    	List<String> list = new ArrayList<String>();
+    	for (int i = 1; i <= n ; i++) {
+    		String s = "";
+			if(i%3==0) {
+				s=s.concat("Fizz");
+			}
+			if(i%5==0) {
+				s=s.concat("Buzz");
+			}
+			if(s.equals("")) {
+				s=s.concat(String.valueOf(i));
+			}
+			list.add(s);
+		}
+    	return list;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().fizzBuzz(3).toString());
+	}
 }

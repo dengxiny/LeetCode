@@ -70,6 +70,70 @@ package com.LeetCode.code.q443.StringCompression;
  */
 class Solution {
     public int compress(char[] chars) {
-        
+    	int start=0,count=0;
+    	for (int i = 0; i < chars.length; i++) {
+			if(i==chars.length-1) {
+				if(i<1||chars[i-1]!=chars[i]) {
+					count++;
+				}else {
+					start =start>0?String.valueOf(start).toCharArray().length:0;
+					count+=1+start;
+					start=0;
+				}
+			}else {
+				if(chars[i]==chars[i+1]) {
+					start++;
+				}else {
+					start =start>0?String.valueOf(start).toCharArray().length:0;
+					count+=1+start;
+					start=0;
+				}
+			}
+		}
+        return count;
     }
+    
+/*    public int compress(char[] chars) {     // 数组大小范围： 1 <= chars.length <= 1000
+        int left = 0;
+        int size = 0;
+        
+        // 由于最后一个字符也需要判断，所以将右指针终点放到数组之外一格
+        for (int right = 0; right <= chars.length; right++) {
+            // 当遍历完成，或右指针元素不等于左指针元素时，更新数组
+            if (right == chars.length || chars[right] != chars[left]) {
+                chars[size++] = chars[left];    // 更新字符
+                if (right - left > 1) {         // 更新计数，当个数大于 1 时才更新
+                    for(char c : String.valueOf(right - left).toCharArray()) {
+                        chars[size++] = c;
+                    }
+                }
+                left = right;
+            }
+        }
+        
+        return size;
+    }*/
+
+
+    
+//    public int compress2(char[] chars) {
+//        int anchor = 0, write = 0;
+//        for (int read = 0; read < chars.length; read++) {
+//            if (read + 1 == chars.length || chars[read + 1] != chars[read]) {
+//                chars[write++] = chars[anchor];
+//                if (read > anchor) {
+//                    for (char c: ("" + (read - anchor + 1)).toCharArray()) {
+//                        chars[write++] = c;
+//                    }
+//                }
+//                anchor = read + 1;
+//            }
+//        }
+//        return write;
+//    }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().compress(new char[] {'a','a','b','b','a','a'}));
+	}
+
 }

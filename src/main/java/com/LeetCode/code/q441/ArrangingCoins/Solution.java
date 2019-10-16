@@ -41,6 +41,20 @@ package com.LeetCode.code.q441.ArrangingCoins;
  */
 class Solution {
     public int arrangeCoins(int n) {
-        
+        return (int)((Math.sqrt(1+8*(long)n)-1)/2);
     }
+    public int arrangeCoins2(int n){
+		return (int)((-1+Math.sqrt(1+8*(long)n))/2);
+	}
+
+
+    public static void main(String[] args) {
+    	System.out.println(1804289383*8);
+    	System.out.println(Integer.MAX_VALUE);
+    	int n = 1804289383;
+    	System.out.println(Math.sqrt(1+8*n));
+    	System.out.println(Math.sqrt(1+8*(long)n));
+		System.out.println(new Solution().arrangeCoins(1804289383));
+		System.out.println(new Solution().arrangeCoins2(1804289383));
+	}
 }

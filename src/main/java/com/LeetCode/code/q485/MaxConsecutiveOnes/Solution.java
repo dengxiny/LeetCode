@@ -25,6 +25,36 @@ package com.LeetCode.code.q485.MaxConsecutiveOnes;
  */
 class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
-        
+    	int count1=0,count2=0,i=0,j=nums.length-1,sum=0;
+    	while(i<=j) {
+    		if(nums[i]>0) {
+    			count1++;
+    		}else {
+    			sum=sum>count1?sum:count1;
+    			count1=0;
+    		}
+    		
+    		if(nums[j]>0) {
+    			count2++;
+    		}else {
+    			sum=sum>count2?sum:count2;
+    			count2=0;
+    		}
+    		if(i==j) {
+    			return sum>count1+count2-1?sum:count1+count2-1;
+    		}
+    		i++;
+    		j--;
+    		
+    	}
+    	return sum>count1+count2?sum:count1+count2;
     }
+    
+    public static void main(String[] args) {
+    	System.out.println(new Solution().findMaxConsecutiveOnes(new int[] {1,0,1,1,0,1}));
+		System.out.println(new Solution().findMaxConsecutiveOnes(new int[] {1,0,1,1,1,0,1}));
+		System.out.println(new Solution().findMaxConsecutiveOnes(new int[] {1,1,0,1,1}));
+		System.out.println(new Solution().findMaxConsecutiveOnes(new int[] {0,0,1,0,0}));
+		System.out.println(new Solution().findMaxConsecutiveOnes(new int[] {0,0,1,1,0}));
+	}
 }

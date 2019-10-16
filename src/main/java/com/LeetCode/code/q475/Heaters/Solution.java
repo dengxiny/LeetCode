@@ -1,4 +1,7 @@
 package com.LeetCode.code.q475.Heaters;
+
+import java.util.Arrays;
+
 /**
  * @QuestionId	:	475
  * @difficulty	:	Easy
@@ -38,7 +41,32 @@ package com.LeetCode.code.q475.Heaters;
 	
  */
 class Solution {
-    public int findRadius(int[] houses, int[] heaters) {
-        
+/*    public int findRadius(int[] houses, int[] heaters) {
+    	
+    }*/
+    
+    
+    public int findRadius2(int[] houses, int[] heaters) {
+        Arrays.sort(houses);
+        Arrays.sort(heaters);
+
+        int j = 0;
+        int max = -1;
+        for(int i = 0;i < houses.length;i++){
+            if((j + 1 < heaters.length) && (Math.abs(houses[i] - heaters[j]) >= Math.abs(houses[i] - heaters[j + 1]))){
+                j++;
+                i--;
+            }else{
+                if(max < Math.abs(houses[i] - heaters[j])){
+                    max = Math.abs(houses[i] - heaters[j]);
+                }
+            }
+        }
+        return max;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().findRadius2(new int[] {1,2,3,4,5,6,5,7,8,9}, new int[] {1,4,9}));
+	}
+
 }

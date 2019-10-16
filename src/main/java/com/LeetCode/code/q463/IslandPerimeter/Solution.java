@@ -30,7 +30,30 @@ package com.LeetCode.code.q463.IslandPerimeter;
 	
  */
 class Solution {
+	/**
+	 * 每次判断是岛屿就去查之前并且相邻因为重合一边所以-2
+	 * @param grid
+	 * @return
+	 */
     public int islandPerimeter(int[][] grid) {
-        
+    	int sum=0;
+        for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid[0].length; j++) {
+				if(grid[i][j]==1) {
+					sum+=4;
+					if(i-1>=0&&grid[i-1][j]==1) {
+						sum-=2;
+					}
+					if(j-1>=0&&grid[i][j-1]==1) {
+						sum-=2;
+					}
+				}
+			}
+		}
+        return sum;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().islandPerimeter(new int[][] {{0,1,0,0},{1,1,1,0},{0,1,0,0},{1,1,0,0}}));
+	}
 }

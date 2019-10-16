@@ -35,7 +35,20 @@ package com.LeetCode.code.q492.ConstructtheRectangle;
 	
  */
 class Solution {
+	/**
+	 * 开方 往下减找到最快符合整除的窄边
+	 * @param area
+	 * @return
+	 */
     public int[] constructRectangle(int area) {
-        
+        int p = (int) Math.sqrt(area);
+        while(area%p!=0) {
+        	p--;
+        }
+        return new int[] {area/p,p};
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().constructRectangle(8));
+	}
 }

@@ -1,4 +1,9 @@
 package com.LeetCode.code.q448.FindAllNumbersDisappearedinanArray;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @QuestionId	:	448
  * @difficulty	:	Easy
@@ -24,6 +29,20 @@ package com.LeetCode.code.q448.FindAllNumbersDisappearedinanArray;
  */
 class Solution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
-        
+    	ArrayList<Integer> list = new ArrayList<Integer>();//store array elements
+		int index;//set index where the elements should be stored 
+		for (int i = 0; i < nums.length; i++) {
+			index = (nums[i] - 1) % nums.length;
+			nums[index] += nums.length;
+		}
+		for (int j = 0; j < nums.length; j++) {
+			if (nums[j] < nums.length)
+				list.add(j + 1);//index+1 for what we get is index,ans is num
+		}
+		return list;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().findDisappearedNumbers(new int[] {4,3,2,7,8,2,3,1}));
+	}
 }

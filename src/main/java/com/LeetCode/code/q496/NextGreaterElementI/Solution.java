@@ -1,4 +1,10 @@
 package com.LeetCode.code.q496.NextGreaterElementI;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Stack;
+
 /**
  * @QuestionId	:	496
  * @difficulty	:	Easy
@@ -39,6 +45,43 @@ package com.LeetCode.code.q496.NextGreaterElementI;
  */
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        
+        int[] r = new int[nums1.length];
+        for (int i = 0; i < nums1.length; i++) {
+        	r[i]=-1;
+			for (int j = 0; j < nums2.length; j++) {
+				if(nums1[i]==nums2[j]) {
+					for (int j2 = j+1; j2 < nums2.length; j2++) {
+						if(nums2[j]<nums2[j2]) {
+							r[i]=nums2[j2];
+							break;
+						}
+					}
+					break;
+				}
+			}
+		}
+        return r;
     }
+    
+    public int[] nextGreaterElement2(int[] nums1, int[] nums2) {
+    	int[] r = new int[nums1.length];
+    	HashMap<Integer,Integer> map = new HashMap<>();
+    	LinkedList<Integer> list = new LinkedList<>();
+    	for (int i : nums2) {
+			while(list.size()>0&&list.getFirst()<i) {
+				map.put(list.removeFirst(),i);
+			}
+			list.addFirst(i);;
+		}
+    	for (int i = 0; i < nums1.length; i++) {
+			r[i]=map.get(nums1[i])==null?-1:map.get(nums1[i]);
+		}
+    	return r;
+    }
+    
+    public static void main(String[] args) {
+	//	new Solution().nextGreaterElement(new int[] {4,1,2}, new int[] {1,3,4,2});
+	//	new Solution().nextGreaterElement2(new int[] {2,4}, new int[] {1,2,3,4});
+		new Solution().nextGreaterElement2(new int[] {2,4}, new int[] {2,1,3,4});
+	}
 }

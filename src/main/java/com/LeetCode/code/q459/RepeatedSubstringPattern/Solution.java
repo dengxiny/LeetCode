@@ -38,6 +38,27 @@ package com.LeetCode.code.q459.RepeatedSubstringPattern;
  */
 class Solution {
     public boolean repeatedSubstringPattern(String s) {
-        
+    	for (int i = 2; i <= s.length(); i++) {
+			if(s.length()%i==0) {
+				int size = s.length()/i;
+				String s1 = s.substring(0,size);
+				System.out.println(s1);
+				boolean flag =true;
+				for (int j = 0; j < i; j++) {
+					String s2 = s.substring(j*(size), size*(j+1));
+					if(!s1.equals(s2)) {
+						flag= false;
+					}
+				}
+				if(flag==true) {
+					return true;
+				}
+			}
+		}
+        return false;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().repeatedSubstringPattern("aaa"));
+	}
 }

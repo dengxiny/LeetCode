@@ -43,7 +43,49 @@ package com.LeetCode.code.q437.PathSumIII;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
+	public int num; 
     public int pathSum(TreeNode root, int sum) {
-        
+    	if(root==null) {
+    		return num;
+    	}
+    	find(root,sum);
+    	pathSum(root.left,sum);
+    	pathSum(root.right,sum);
+        return num;
     }
+    
+    public void find(TreeNode root,int sum) {
+    	if(root == null) {
+    		return ;
+    	}
+    	sum-=root.val;
+    	if(sum==0) {
+    		num++;
+    		return;
+    	}
+    	find(root.left,sum);
+    	find(root.right,sum);
+    }
+    
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+    	TreeNode t = s.new TreeNode(10);
+    	t.left = s.new TreeNode(5);
+    	t.right = s.new TreeNode(-3);
+    	t.left.left = s.new TreeNode(3);
+    	t.left.right = s.new TreeNode(2);
+    	t.left.left.left = s.new TreeNode(3);
+    	t.left.left.right = s.new TreeNode(-2);
+    	t.left.right.right = s.new TreeNode(1);
+    	t.right.right = s.new TreeNode(11);
+    	int sum=8;
+		System.out.println(s.pathSum(t,sum));
+	}
 }

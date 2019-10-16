@@ -17,7 +17,33 @@ package com.LeetCode.code.q434.NumberofSegmentsinaString;
 	
  */
 class Solution {
+/*    public int countSegments(String s) {
+        return s.replace("", newChar)
+    }*/
+    
     public int countSegments(String s) {
-        
+        int segmentCount = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if ((i == 0 || s.charAt(i-1) == ' ') && s.charAt(i) != ' ') {
+                segmentCount++;
+            }
+        }
+
+        return segmentCount;
     }
+    
+    public int countSegments2(String s) {
+        String trimmed = s.trim();
+        if (trimmed.equals("")) {
+            return 0;
+        }
+        return trimmed.split("\\s+").length;
+    }
+
+
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().countSegments2(" Hello  , my name  is John "));
+	}
 }

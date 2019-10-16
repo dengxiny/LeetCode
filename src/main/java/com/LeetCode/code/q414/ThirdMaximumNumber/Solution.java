@@ -1,4 +1,7 @@
 package com.LeetCode.code.q414.ThirdMaximumNumber;
+
+import java.util.Arrays;
+
 /**
  * @QuestionId	:	414
  * @difficulty	:	Easy
@@ -41,6 +44,26 @@ package com.LeetCode.code.q414.ThirdMaximumNumber;
  */
 class Solution {
     public int thirdMax(int[] nums) {
-        
+    	Arrays.sort(nums);
+    	int count = 0;
+    	int sum = nums[nums.length-1];
+    	for (int i = nums.length-1; i >=0 ;i--) {
+			if(sum>nums[i]) {
+				sum=nums[i];
+				count++;
+			}
+			if(count==2) {
+				break;
+			}
+		}
+    	if(count==2) {
+    		return sum;
+    	}
+        return nums[nums.length-1];
     }
+    
+    public static void main(String[] args) {
+    	System.out.println(new Solution().thirdMax(new int[] {3,2,1}));
+		
+	}
 }

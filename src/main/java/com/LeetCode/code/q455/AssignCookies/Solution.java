@@ -1,4 +1,7 @@
 package com.LeetCode.code.q455.AssignCookies;
+
+import java.util.Arrays;
+
 /**
  * @QuestionId	:	455
  * @difficulty	:	Easy
@@ -41,6 +44,15 @@ package com.LeetCode.code.q455.AssignCookies;
  */
 class Solution {
     public int findContentChildren(int[] g, int[] s) {
-        
+    	Arrays.sort(g);
+    	Arrays.sort(s);
+    	int a = 0,b=0;
+        while(a<g.length&&b<s.length) {
+        	if(g[a]<=s[b]) {
+        		a++;
+        	}
+        	b++;
+        }
+        return a;
     }
 }
