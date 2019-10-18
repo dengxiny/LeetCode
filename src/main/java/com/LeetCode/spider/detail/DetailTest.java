@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import com.LeetCode.freemark.FreemarkerDemo;
 import com.LeetCode.spider.QuestionTransBean;
 import com.alibaba.fastjson.JSONObject;
@@ -65,6 +67,7 @@ public class DetailTest {
 				.replaceAll("<\\w+>", "").replaceAll("</\\w+>", "").replaceAll("\\n", "\n\t").replace("&#39;", ".")
 				.replace("&le;", "≤").replace("&le;", "≤");
 		}
+		question.setContent(StringEscapeUtils.unescapeHtml(question.getContent()));
 		String difficulty = question.getDifficulty();
 		titleSlug = question.getTitleSlug();
 		Map<String, String> dataMap = new HashMap<String, String>();

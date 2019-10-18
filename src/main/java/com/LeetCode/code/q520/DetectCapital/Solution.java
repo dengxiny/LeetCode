@@ -36,6 +36,22 @@ package com.LeetCode.code.q520.DetectCapital;
  */
 class Solution {
     public boolean detectCapitalUse(String word) {
-        
+        char[] c = word.toCharArray();
+        int up = 0, low = 0; 
+        for (char d : c) {
+			if(d>90) {
+				low++;
+			}else {
+				up++;
+			}
+		}		
+        if(low==word.length()||up==word.length()||(c[0]<'a'&&up==1)) {
+        	return true;
+        }
+        return false;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().detectCapitalUse("91"));
+	}
 }

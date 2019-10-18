@@ -48,20 +48,15 @@ import com.alibaba.fastjson.JSON;
  *     TreeNode(int x) { val = x; }
  * }
  */
-class Solution {
+class Solution2 {
 	  public class TreeNode {
 	      int val;
 	      TreeNode left;
 	      TreeNode right;
 	      TreeNode(int x) { val = x; }
 	  }
-	  	/**
-	  	 * 有问题存在TreeNode当局部变量每次都会指向之前传入
-	  	 * 二叉树中序排序
-	  	 * @param root
-	  	 * @return
-	  	 */
-	    public int[] findMode(TreeNode root) {
+	 
+/*	    public int[] findMode(TreeNode root) {
 	    	if(root==null) {
 	    		return null;
 	    	}
@@ -73,7 +68,6 @@ class Solution {
 	    	for (int i = 0; i < list.size(); i++) {
 				res[i]=list.get(i);
 			}
-	    	System.out.println(JSON.toJSONString(pre));
 	        return res;
 	    }
 	    
@@ -94,8 +88,8 @@ class Solution {
 	        }
 	        pre = root;
 	        order(root.right,pre,cur,max,list);
-	    }
-/*	  TreeNode pre = null;
+	    }*/
+	  TreeNode pre = null;
     public int[] findMode(TreeNode root) {
     	if(root==null) {
     		return null;
@@ -107,6 +101,7 @@ class Solution {
     	for (int i = 0; i < list.size(); i++) {
 			res[i]=list.get(i);
 		}
+    	System.out.println(JSON.toJSONString(pre));
         return res;
     }
     
@@ -127,7 +122,7 @@ class Solution {
         }
         pre = root;
         order(root.right,cur,max,list);
-    }*/
+    }
     
 /*	  List<Integer> list = new ArrayList<>();
 	    TreeNode pre;
@@ -170,7 +165,7 @@ class Solution {
 	    }*/
 
     public static void main(String[] args) {
-		Solution s = new Solution();
+		Solution2 s = new Solution2();
 		TreeNode t = s.new TreeNode(1);
 		t.right = s.new TreeNode(2);
 		t.right.left = s.new TreeNode(2);

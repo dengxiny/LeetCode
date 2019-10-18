@@ -1,4 +1,7 @@
 package com.LeetCode.code.q521.LongestUncommonSubsequenceI;
+
+import org.apache.commons.lang.StringEscapeUtils;
+
 /**
  * @QuestionId	:	521
  * @difficulty	:	Easy
@@ -28,6 +31,11 @@ package com.LeetCode.code.q521.LongestUncommonSubsequenceI;
  */
 class Solution {
     public int findLUSlength(String a, String b) {
-        
+        return 0;
     }
+    
+    public static void main(String[] args) {
+    	System.out.println(StringEscapeUtils.unescapeHtml("字符串中的字符仅含有 &#39;a&#39;~&#39;z&#39;"));
+    	;
+	}
 }

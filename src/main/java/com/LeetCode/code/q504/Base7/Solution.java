@@ -26,6 +26,23 @@ package com.LeetCode.code.q504.Base7;
  */
 class Solution {
     public String convertToBase7(int num) {
-        
+    	int tem = num ;
+        if(num==0) {
+        	return "0";
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        num = Math.abs(num);
+        while(num!=0) {
+        	stringBuilder.append(num%7);
+        	num=num/7;
+        }
+        if(tem<0) {
+        	stringBuilder.append("-");
+        }
+        return stringBuilder.reverse().toString();
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().convertToBase7(-10));
+	}
 }

@@ -26,7 +26,27 @@ package com.LeetCode.code.q507.PerfectNumber;
 	
  */
 class Solution {
+	/**
+	 * 超时 
+	 * 改成开方再通过除法求另一个因子
+	 * @param num
+	 * @return
+	 */
     public boolean checkPerfectNumber(int num) {
-        
+    	int sum = 1;
+    	int tem = 1;
+        while(tem++<Math.sqrt((long)num)-1) {
+        	if(num%tem==0) {
+        		sum+=(tem+num/tem);
+        	}
+        }
+        if(sum==num&&sum!=1) {
+        	return true;
+        }
+        return false;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().checkPerfectNumber(28));
+	}
 }
