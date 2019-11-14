@@ -1,4 +1,7 @@
 package com.LeetCode.code.q643.MaximumAverageSubarrayI;
+
+import java.util.LinkedList;
+
 /**
  * @QuestionId	:	643
  * @difficulty	:	Easy
@@ -26,6 +29,44 @@ package com.LeetCode.code.q643.MaximumAverageSubarrayI;
  */
 class Solution {
     public double findMaxAverage(int[] nums, int k) {
+    	LinkedList<Integer> list = new LinkedList<>();
+    	double sum = 0;
+    	double max = Integer.MIN_VALUE;
+    	for (int i = 0; i < nums.length; i++) {
+    		int a ;
+			a = nums[i];
+			list.add(a);
+			sum+=a;
+			if(list.size()==k) {
+				 max = Math.max(max, sum/k);
+				 a = list.poll();
+				 sum-=a;
+			}
+		}
+		return max;
         
     }
+    
+    public double findMaxAverage2(int[] nums, int k) {
+    	double sum = 0;
+    	double max = 0;
+    	for (int i = 0; i < k; i++) {
+    		sum+=nums[i];
+		}
+    	max = sum;
+    	for (int i = k; i < nums.length; i++) {
+    		if(max<sum+nums[i]-nums[i-k]) {
+    			max=sum+nums[i]-nums[i-k];
+    		}
+    		sum=sum+nums[i]-nums[i-k];
+		}
+		return max/k;
+    }
+    
+    
+    public static void main(String[] args) {
+    	System.out.println(new Solution().findMaxAverage2(new int[] {5}, 1));
+		System.out.println(new Solution().findMaxAverage2(new int[] {1,12,-5,-6,50,3}, 4));
+		System.out.println(new Solution().findMaxAverage2(new int[] {0,4,0,3,2}, 1));
+	}
 }

@@ -1,4 +1,9 @@
 package com.LeetCode.code.q575.DistributeCandies;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+
 /**
  * @QuestionId	:	575
  * @difficulty	:	Easy
@@ -37,6 +42,11 @@ package com.LeetCode.code.q575.DistributeCandies;
  */
 class Solution {
     public int distributeCandies(int[] candies) {
+    	HashSet<Integer> hashSet = new HashSet<Integer>();
+    	for (Integer integer : candies) {
+    		hashSet.add(integer);
+		}
+		return Math.min(hashSet.size(), candies.length/2);
         
     }
 }

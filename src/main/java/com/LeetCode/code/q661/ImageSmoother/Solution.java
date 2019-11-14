@@ -34,6 +34,11 @@ package com.LeetCode.code.q661.ImageSmoother;
  */
 class Solution {
     public int[][] imageSmoother(int[][] M) {
+    	int[][] N = new int[M.length][M[0].length];
+    	for (int i = 0; i < N.length; i++) {
+			
+		}
+		return N;
         
     }
 }

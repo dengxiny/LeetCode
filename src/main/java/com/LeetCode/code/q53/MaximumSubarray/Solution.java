@@ -21,6 +21,22 @@ package com.LeetCode.code.q53.MaximumSubarray;
  */
 class Solution {
     public int maxSubArray(int[] nums) {
+    	int sum = 0;
+    	int res = nums[0];
+    	for (int i : nums) {
+			if(sum > 0) {
+				sum+=i;
+			}else {
+				sum=i;
+			}
+			res = Math.max(res, sum);
+		}
+    	return res;
         
     }
+    
+    public static void main(String[] args) {
+		//System.out.println(new Solution().maxSubArray(new int[] {-2,1,-3,4,-1,2,1,-5,4}));
+		System.out.println(new Solution().maxSubArray(new int[] {2,-1,3}));
+	}
 }

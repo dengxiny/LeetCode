@@ -28,6 +28,21 @@ package com.LeetCode.code.q657.RobotReturntoOrigin;
  */
 class Solution {
     public boolean judgeCircle(String moves) {
-        
+    	int[] res = new int[] {0,0,0,0};
+    	for (int i = 0; i < moves.length(); i++) {
+    		if(moves.charAt(i)=='R') {
+    			res[0]+=1;
+    		}else if(moves.charAt(i)=='L') {
+    			res[1]+=1;
+    		}else if(moves.charAt(i)=='U') {
+    			res[2]+=1;
+    		}else if(moves.charAt(i)=='D') {
+    			res[3]+=1;
+    		}
+		}
+    	if(res[0]==res[1]&&res[2]==res[3]) {
+    		return true;
+    	}
+		return false;
     }
 }

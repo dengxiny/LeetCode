@@ -1,4 +1,10 @@
 package com.LeetCode.code.q637.AverageofLevelsinBinaryTree;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * @QuestionId	:	637
  * @difficulty	:	Easy
@@ -37,7 +43,46 @@ package com.LeetCode.code.q637.AverageofLevelsinBinaryTree;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
     public List<Double> averageOfLevels(TreeNode root) {
-        
+    	if(root == null) {
+    		return null;
+    	}
+    	List<Double> list = new ArrayList<Double>();
+    //list.add(new Double(root.val));
+    	int size = 1 ;
+    	LinkedList<TreeNode> que = new LinkedList<TreeNode>();
+    	que.add(root);
+    	while(que.size()>0) {
+    		double sum = 0;
+    		int len = que.size();
+    		for (int i = 0; i < len; i++) {
+    			TreeNode pre = que.poll();
+    			sum+=pre.val;
+    			if(pre.left!=null) {
+    				que.add(pre.left);
+    			}
+    			if(pre.right!=null) {
+    				que.add(pre.right);
+    			}
+			}
+    		list.add(sum/len);
+    	}
+    	return list;
     }
+    	
+    public static void main(String[] args) {
+		Solution s = new Solution();
+		TreeNode  t = s.new TreeNode(3);
+		t.left = s.new TreeNode(9);
+		t.right = s.new TreeNode(20);
+		t.right.left = s.new TreeNode(15);
+		t.right.right = s.new TreeNode(7);
+		System.out.println(s.averageOfLevels(t).toString());
+	}	
 }

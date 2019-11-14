@@ -28,6 +28,27 @@ package com.LeetCode.code.q66.PlusOne;
  */
 class Solution {
     public int[] plusOne(int[] digits) {
+    	int i = digits.length-1;
+    	while(i>=0) {
+    		digits[i]+=1;
+    		if(digits[i]%10!=0) {
+    			return digits;
+    		}else {
+    			digits[i]=0;
+    		}
+    		i--;
+    	}
+    	digits = new int[digits.length+1];
+    	digits[0] = 1;
+		return digits;
         
+    }
+    
+    public static void main(String[] args) {
+		int a[] = new int[] {1,2};
+		a = new int[3];
+		for (int i : a) {
+			System.out.println(i);
+		}
     }
 }

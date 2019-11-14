@@ -27,6 +27,22 @@ package com.LeetCode.code.q633.SumofSquareNumbers;
  */
 class Solution {
     public boolean judgeSquareSum(int c) {
-        
+    	int a = (int)Math.pow(c, 0.5);
+    	int i=0;
+    	while(i<=a) {
+    		int sum = i*i+a*a;
+    		if(sum==c) {
+				return true;
+			}else if (sum>c) {
+				a--;
+			}else if (sum<c) {
+				i++;
+			}
+    	}
+		return false;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().judgeSquareSum(2147483643));
+	}
 }

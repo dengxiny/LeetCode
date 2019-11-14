@@ -1,4 +1,7 @@
 package com.LeetCode.code.q581.ShortestUnsortedContinuousSubarray;
+
+import java.util.Arrays;
+
 /**
  * @QuestionId	:	581
  * @difficulty	:	Easy
@@ -27,6 +30,25 @@ package com.LeetCode.code.q581.ShortestUnsortedContinuousSubarray;
  */
 class Solution {
     public int findUnsortedSubarray(int[] nums) {
-        
+    	int[] nums2 = nums.clone();
+    	Arrays.sort(nums2);
+    	int i = 0,j=nums2.length-1,start=-1,end=-1;
+    	while(i<=j&&(start==-1||end==-1)) {
+    		if(nums2[i]-nums[i]!=0) {
+    			start = i;
+    		}else {
+    			i++;
+    		}
+    		if(nums2[j]-nums[j]!=0) {
+    			end = j;
+    		}else {
+    			j--;
+    		}
+    	}
+    	return start>-1?end-start+1:0;
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().findUnsortedSubarray(new int[]{2,1}));
+	}
 }

@@ -1,4 +1,7 @@
 package com.LeetCode.code.q617.MergeTwoBinaryTrees;
+
+import com.alibaba.fastjson.JSON;
+
 /**
  * @QuestionId	:	617
  * @difficulty	:	Easy
@@ -41,7 +44,48 @@ package com.LeetCode.code.q617.MergeTwoBinaryTrees;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+		public int getVal() {
+			return val;
+		}
+	  }
+	  
+	/**
+	 * 不要设置成全局变量 每次都会改变全局变量左右节点
+	 * @param t1
+	 * @param t2
+	 * @return
+	 */
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
-        
+    	if(t1==null&&t2==null) {
+    		return null;
+    	}else if(t1==null) {
+    		return t2;
+    	}else if(t2==null) {
+    		return t1;
+    	}
+    	TreeNode t = new TreeNode((t1==null?0:t1.val)+(t2==null?0:t2.val));
+    	t.left = mergeTrees(t1.left,t2.left);
+    	t.right = mergeTrees(t1.right,t2.right);
+    	return t;
     }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+		TreeNode t = s.new TreeNode(1);
+		t.right = s.new TreeNode(3);
+		t.left = s.new TreeNode(2);
+		t.left.left = s.new TreeNode(4);
+		
+		TreeNode t2 = s.new TreeNode(1);
+		t2.right = s.new TreeNode(3);
+		t2.left = s.new TreeNode(2);
+		t2.left.left = s.new TreeNode(4);
+		System.out.println(JSON.toJSONString(t));
+		System.out.println(JSON.toJSONString(s.mergeTrees(t, t2)));
+	}
 }

@@ -32,6 +32,18 @@ package com.LeetCode.code.q551.StudentAttendanceRecordI;
  */
 class Solution {
     public boolean checkRecord(String s) {
-        
+        char[] charry = s.toCharArray();
+        int A = 0;
+        for (int i = 0; i < charry.length; i++) {
+			if(charry[i]=='A') {
+				A++;
+				if(A>1) {
+					return false;
+				}
+			}else if(charry[i]=='L'&&i+1<charry.length&&charry[i+1]=='L'&&i+2<charry.length&&charry[i+2]=='L') {
+				return false;
+			}
+		}
+        return true;
     }
 }

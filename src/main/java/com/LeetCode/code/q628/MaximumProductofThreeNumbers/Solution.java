@@ -1,4 +1,7 @@
 package com.LeetCode.code.q628.MaximumProductofThreeNumbers;
+
+import java.util.Arrays;
+
 /**
  * @QuestionId	:	628
  * @difficulty	:	Easy
@@ -31,6 +34,13 @@ package com.LeetCode.code.q628.MaximumProductofThreeNumbers;
  */
 class Solution {
     public int maximumProduct(int[] nums) {
-        
+        	Arrays.sort(nums);
+        	int sum1 = Math.max(nums[nums.length-3]*nums[nums.length-2]*nums[nums.length-1], nums[nums.length-1]*nums[nums.length-2]*nums[0]);
+        	int sum2 = Math.max(nums[0]*nums[1]*nums[2], nums[0]*nums[1]*nums[nums.length-1]);
+        	return Math.max(sum1,sum2);
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().maximumProduct(new int[] {-4,-3,-1,3,4}));
+	}
 }

@@ -1,4 +1,9 @@
-package com.LeetCode.code.q653.TwoSumIV-InputisaBST;
+package com.LeetCode.code.q653.TwoSumIV
+
+import java.util.HashMap;
+import java.util.Map;
+
+-InputisaBST;
 /**
  * @QuestionId	:	653
  * @difficulty	:	Easy
@@ -52,7 +57,25 @@ package com.LeetCode.code.q653.TwoSumIV-InputisaBST;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
     public boolean findTarget(TreeNode root, int k) {
-        
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        return order(root,k,map);
     }
+	private boolean order(TreeNode root, int k, Map<Integer, Integer> map) {
+		if(root==null) {
+			return false;
+		}
+		if(map.containsKey(k-root.val)) {
+			return true;
+		}else {
+			map.put(root.val, root.val);
+		}
+		return order(root.left, k, map)||order(root.right, k, map);
+	}
 }

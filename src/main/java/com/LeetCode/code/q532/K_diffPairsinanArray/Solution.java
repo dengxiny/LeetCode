@@ -1,4 +1,12 @@
-package com.LeetCode.code.q532.K-diffPairsinanArray;
+package com.LeetCode.code.q532.K_diffPairsinanArray;
+
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+
 /**
  * @QuestionId	:	532
  * @difficulty	:	Easy
@@ -43,6 +51,28 @@ package com.LeetCode.code.q532.K-diffPairsinanArray;
  */
 class Solution {
     public int findPairs(int[] nums, int k) {
+    	int count = 0;
+        if(nums.length<2||k<0) {
+        	return 0;
+        }
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i : nums) {
+			map.put(i, map.get(i)==null?0:1);
+		}
         
+        Set<Integer> set = map.keySet();
+        for (Integer i: set) {
+        	if(k==0) {
+            	count+= map.get(i);
+            }else if(map.get(i+k)!=null) {
+				count++;
+			}
+		}
+        return count;
     }
+    
+    public static void main(String[] args) {
+    	System.out.println(new Solution().findPairs(new int[] {3, 1, 4, 1, 5}, 2));
+		System.out.println(new Solution().findPairs(new int[] {1, 3, 1, 5, 4}, 0));
+	}
 }

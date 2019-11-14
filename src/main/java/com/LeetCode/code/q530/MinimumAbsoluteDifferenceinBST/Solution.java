@@ -1,4 +1,6 @@
 package com.LeetCode.code.q530.MinimumAbsoluteDifferenceinBST;
+
+
 /**
  * @QuestionId	:	530
  * @difficulty	:	Easy
@@ -38,7 +40,42 @@ package com.LeetCode.code.q530.MinimumAbsoluteDifferenceinBST;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
+	int res = Integer.MAX_VALUE;  
+	TreeNode pre;  
+	/**
+	 * 由于是二叉树满足左节点《root《右节点 直接用中序遍历求
+	 * @param root
+	 * @return
+	 */
     public int getMinimumDifference(TreeNode root) {
-        
+    	order(root);
+    	return res;
     }
+    
+    public void order(TreeNode root) {
+    	if(root==null) {
+    		return ;
+    	}
+    	order(root.left);
+    	if(pre!=null) {
+    		res = Math.min(res,Math.abs(pre.val-root.val));
+    	}
+    	pre = root;
+    	order(root.right);
+    }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+		TreeNode t = s.new TreeNode(1);
+		t.right = s.new TreeNode(4);
+		t.right.right = s.new TreeNode(2);
+		System.out.println(s.getMinimumDifference(t));
+		
+	}
 }

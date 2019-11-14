@@ -1,4 +1,6 @@
 package com.LeetCode.code.q563.BinaryTreeTilt;
+
+
 /**
  * @QuestionId	:	563
  * @difficulty	:	Easy
@@ -44,7 +46,41 @@ package com.LeetCode.code.q563.BinaryTreeTilt;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
+	  
+	 
+	int sum = 0;  
     public int findTilt(TreeNode root) {
-        
+    	getSum(root);
+        return sum;
     }
+
+
+	public int getSum(TreeNode root) {
+		if(root==null) {
+			return 0;
+		}
+		int left = getSum(root.left);
+		int right = getSum(root.right);
+		sum +=Math.abs(left-right);
+		return root.val+right+left;
+	}
+	
+	public static void main(String[] args) {
+	   	Solution s = new Solution();
+    	TreeNode t =  s.new TreeNode(3);
+    	t.left = s.new TreeNode(2);
+    	t.right = s.new TreeNode(4);
+    	t.left.left = s.new TreeNode(3);
+    	t.left.right = s.new TreeNode(1);
+    	t.right.left = s.new TreeNode(5);
+    	t.right.right = s.new TreeNode(7);
+    	//|3-1|+|5-7|+|2+3+1-4-5-7|=2+2+10=14
+    	System.out.println(s.findTilt(t));
+	}
 }

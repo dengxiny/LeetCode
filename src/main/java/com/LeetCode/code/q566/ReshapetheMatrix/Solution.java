@@ -52,6 +52,27 @@ package com.LeetCode.code.q566.ReshapetheMatrix;
  */
 class Solution {
     public int[][] matrixReshape(int[][] nums, int r, int c) {
-        
+        if(nums[0].length*nums.length!=r*c) {
+        	return nums;
+        }
+        int[][] res = new int[r][c];
+        int a=0,b=0,z=0;
+        for (int i = 0; i < nums.length; i++) {
+			for (int j = 0; j < nums[0].length; j++) {
+				z++;
+				res[a][b]=nums[i][j];
+				b++;
+				if(z%c==0) {
+					a++;
+					b=0;
+				}
+			}
+		}
+		return res;
     }
+    
+    public static void main(String[] args) {
+    	
+		System.out.println(new Solution().matrixReshape(new int[][] {{1,2},{3,4}}, 1, 4));
+	}
 }

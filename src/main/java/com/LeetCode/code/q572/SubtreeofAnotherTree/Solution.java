@@ -62,7 +62,44 @@ package com.LeetCode.code.q572.SubtreeofAnotherTree;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
+	  
+	boolean flag = false;
     public boolean isSubtree(TreeNode s, TreeNode t) {
+    	if(s!=null) {
+    		flag = flag ||isSame(s,t); 
+    		if(!flag) {
+    			flag = isSubtree(s.left,t)||isSubtree(s.right,t);
+    		}
+    	}
+		return flag;
         
     }
+    
+    public boolean isSame(TreeNode p, TreeNode q) {
+		if(p==null&&q==null) {
+			return true;
+		}
+		if(p==null||q==null) {
+			return false;
+		}
+		return p.val==q.val&&isSame(p.left,q.left)&&isSame(p.right,q.right);
+    }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+    	TreeNode t = s.new TreeNode(4);
+    	t.left = s.new TreeNode(4);
+    	//t.right = s.new TreeNode(2);
+    	TreeNode t2 = s.new TreeNode(4);
+    	//t2.left = s.new TreeNode(1);
+    	//t2.right = s.new TreeNode(2);
+		System.out.println(s.isSubtree(t, t2));
+	}
+    
 }

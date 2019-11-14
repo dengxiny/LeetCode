@@ -1,4 +1,7 @@
 package com.LeetCode.code.q538.ConvertBSTtoGreaterTree;
+
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * @QuestionId	:	538
  * @difficulty	:	Easy
@@ -32,7 +35,31 @@ package com.LeetCode.code.q538.ConvertBSTtoGreaterTree;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
+	int num = 0 ;  
     public TreeNode convertBST(TreeNode root) {
+    	if(root==null) {
+    		return null;
+    	}
+    	convertBST(root.right);
+    	num = num + root.val;
+    	root.val = num ;
+    	convertBST(root.left);
+		return root;
         
     }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+    	TreeNode t =  s.new TreeNode(5);
+    	t.left = s.new TreeNode(2);
+    	t.right = s.new TreeNode(13);
+    	TreeNode r = s.convertBST(t);
+		//System.out.println(JSONObject.toJSONString());
+	}
 }

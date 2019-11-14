@@ -1,4 +1,6 @@
 package com.LeetCode.code.q543.DiameterofBinaryTree;
+
+
 /**
  * @QuestionId	:	543
  * @difficulty	:	Easy
@@ -33,7 +35,39 @@ package com.LeetCode.code.q543.DiameterofBinaryTree;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
+	int sum = 0; 
     public int diameterOfBinaryTree(TreeNode root) {
-        
+    	if(root==null) {
+    		return 0;
+    	}else {
+    		depth(root);
+    		return sum;
+    	}
     }
+    
+    public int depth(TreeNode root) {
+		if(root==null) {
+			return 0;
+		}
+		int left = depth(root.left);
+		int right = depth(root.right);
+		if(left+right>sum) {
+			sum = left+right;
+		}
+		return Math.max(left, right)+1;
+	}
+
+	public static void main(String[] args) {
+    	Solution s = new Solution();
+    	TreeNode t =  s.new TreeNode(5);
+    	t.left = s.new TreeNode(2);
+    	t.right = s.new TreeNode(13);
+    	System.out.println(s.diameterOfBinaryTree(t));
+	}
 }

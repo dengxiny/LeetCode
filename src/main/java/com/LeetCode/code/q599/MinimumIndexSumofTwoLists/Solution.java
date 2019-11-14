@@ -1,4 +1,10 @@
 package com.LeetCode.code.q599.MinimumIndexSumofTwoLists;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @QuestionId	:	599
  * @difficulty	:	Easy
@@ -39,6 +45,64 @@ package com.LeetCode.code.q599.MinimumIndexSumofTwoLists;
  */
 class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {
-        
+    	List<String> list = new ArrayList<>();
+    	if(list1.length<list2.length) {
+    		String[] temp = list1; 
+    		list1 = list2 ;
+    		list2 = temp;
+    	}
+    	for (String string : list2) {
+			list.add(string);
+		}
+    	//Map<String, Integer> map = new HashMap<String, Integer>();
+    	String[] s = new String[list1.length+list2.length];
+    	System.out.println(s[0]);
+    	for (int i = 0; i < list1.length; i++) {
+    		int index = list.indexOf(list1[i]);
+    		System.out.println(index);
+			if(index !=-1) {
+				index +=i;
+				s[index] =s[index] == null ?list1[i]:s[index]+","+list1[i];
+			}
+		}
+    	String[] s2 = new String[] {};
+    	for (int i = 0; i < s.length; i++) {
+			if(s[i]!=null) {
+				s2 = s[i].split(",");
+				break;
+			}
+		}
+        return s2 ;
     }
+    /**
+     * 官方
+     * @param list1
+     * @param list2
+     * @return
+     */
+    public String[] findRestaurant2(String[] list1, String[] list2) {
+        HashMap < String, Integer > map = new HashMap < String, Integer > ();
+        for (int i = 0; i < list1.length; i++)
+            map.put(list1[i], i);
+        List < String > res = new ArrayList < > ();
+        int min_sum = Integer.MAX_VALUE, sum;
+        for (int j = 0; j < list2.length && j <= min_sum; j++) {
+            if (map.containsKey(list2[j])) {
+                sum = j + map.get(list2[j]);
+                if (sum < min_sum) {
+                    res.clear();
+                    res.add(list2[j]);
+                    min_sum = sum;
+                } else if (sum == min_sum)
+                    res.add(list2[j]);
+            }
+        }
+        return res.toArray(new String[res.size()]);
+    }
+
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().findRestaurant(new String[]{"Shogun","Tapioca Express","Burger King","KFC"
+			}, new String[]{"KFC","Burger King","Tapioca Express","Shogun"}));
+	}
 }

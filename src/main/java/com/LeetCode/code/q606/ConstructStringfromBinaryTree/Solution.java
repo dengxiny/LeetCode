@@ -1,4 +1,6 @@
 package com.LeetCode.code.q606.ConstructStringfromBinaryTree;
+
+
 /**
  * @QuestionId	:	606
  * @difficulty	:	Easy
@@ -53,7 +55,45 @@ package com.LeetCode.code.q606.ConstructStringfromBinaryTree;
  * }
  */
 class Solution {
+	  public class TreeNode {
+	      int val;
+	      TreeNode left;
+	      TreeNode right;
+	      TreeNode(int x) { val = x; }
+	  }
+	StringBuilder s =null; 
+	TreeNode pre = null;
     public String tree2str(TreeNode t) {
-        
+    	s = new StringBuilder();
+    	s.append("");
+    	order(t);
+    	//去掉最外层括号
+        return s.length()>1?s.substring(1,s.length()-1).toString():s.toString();
     }
+    
+    
+    public void order(TreeNode t) {
+    	if(t == null) {
+    		return ;
+    	}
+    	//如果左节点为空右节点不为空
+    	if(pre != null&&pre.left == null&&pre.right == t) {
+			s.append("()");
+		}
+		s.append("(");
+		s.append(t.val);
+        pre = t;
+        order(t.left);
+        order(t.right);
+        s.append(")");
+    }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+		TreeNode t = s.new TreeNode(1);
+		t.right = s.new TreeNode(3);
+		t.left = s.new TreeNode(2);
+		t.left.left = s.new TreeNode(4);
+		System.out.println(s.tree2str(t));
+	}
 }

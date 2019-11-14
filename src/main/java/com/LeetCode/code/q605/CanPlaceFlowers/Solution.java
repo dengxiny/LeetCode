@@ -1,4 +1,7 @@
 package com.LeetCode.code.q605.CanPlaceFlowers;
+
+import java.util.Iterator;
+
 /**
  * @QuestionId	:	605
  * @difficulty	:	Easy
@@ -33,7 +36,33 @@ package com.LeetCode.code.q605.CanPlaceFlowers;
 	
  */
 class Solution {
+	/**
+	 * 别人题解巧用if
+	 * @param flowerbed
+	 * @param n
+	 * @return
+	 */
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
-        
+    	for (int i = 0; i < flowerbed.length; i++) {
+    		//当前后包括自己都为0 就在自己这种花
+    		if(flowerbed[i]==0
+    				&&(i==0||flowerbed[i-1]==0)
+    				&&(i+1==flowerbed.length||flowerbed[i+1]==0)
+    				) {
+    			n--;
+    			flowerbed[i]=1;
+    		}
+    		if(n==0) {
+    			return true;
+    		}
+		}
+		return false;
+    }
+    
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().canPlaceFlowers(new int[] {1,0,0,0,1,0,0}, 2));
+		System.out.println(new Solution().canPlaceFlowers(new int[] {0,0,1,0,0}, 2));
+		System.out.println(new Solution().canPlaceFlowers(new int[] {1,0,0,0,0,1}, 2));
     }
 }

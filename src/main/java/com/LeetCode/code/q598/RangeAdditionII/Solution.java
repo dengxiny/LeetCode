@@ -48,6 +48,33 @@ package com.LeetCode.code.q598.RangeAdditionII;
  */
 class Solution {
     public int maxCount(int m, int n, int[][] ops) {
-        
+    	if(ops.length==0) {
+    		return m*n;
+    	}
+    	int x = Integer.MAX_VALUE;
+    	int y = Integer.MAX_VALUE;
+    	for (int i = 0; i < ops.length; i++) {
+			if(x>ops[i][0]) {
+				x=ops[i][0];
+			}
+			if(y>ops[i][1]) {
+				y=ops[i][1];
+			}
+		}
+    	return x*y;
+    	//return Math.min(m, x)*Math.min(n, y);
     }
+    
+    public static void main(String[] args) {
+		int[][] a = new int[][] {{2,2},{3,3}};
+		/*for (int[] is : a) {
+			for (int i : is) {
+				System.out.println(i);
+			}
+		}*/
+		for (int i = 0; i < a.length; i++) {
+			System.out.println(a[i][0]);
+			System.out.println(a[i][1]);
+		}
+	}
 }

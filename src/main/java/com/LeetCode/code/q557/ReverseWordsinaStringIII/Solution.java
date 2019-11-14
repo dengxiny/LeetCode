@@ -19,6 +19,16 @@ package com.LeetCode.code.q557.ReverseWordsinaStringIII;
  */
 class Solution {
     public String reverseWords(String s) {
-        
+    	StringBuilder b = new StringBuilder();
+    	String[] s1  = s.split(" ");
+    	for (String string : s1) {
+    		StringBuilder sb = new StringBuilder();
+			b.append(sb.append(string).reverse()).append(" ");
+		}
+    	return b.substring(0,s.length());
     }
+    
+    public static void main(String[] args) {
+		System.out.println(new Solution().reverseWords("Let's take LeetCode contest"));
+	}
 }
